@@ -113,12 +113,12 @@ def query_openai(file_path):
         ]
     )
 
-    response_text = response.choices[0].message.content.encode("utf-8").decode()
+    response_text = response.choices[0].message.content.encode("latin-1", "replace").decode("latin-1")
     return response_text
 
 # Write AI response to log file
 def write_log(text):
-    file = open(log_file, "w", encoding="utf-8")
+    file = open(log_file, "w")
     now = datetime.now()
     formatted_now = now.strftime("%Y-%m-%d %H:%M:%S")
     file.write(f"Date: {formatted_now}\nReport file: {input_file}\n\n")
